@@ -125,29 +125,60 @@
   --c-red-200: #5a2a2a;
 }
 
-/* ── 5. Sunset (warm light) ── */
+/* ── 5. Sunset (summer tropical) ── */
 [data-theme="sunset"] {
-  --c-surface: #fffaf5;
-  --c-gray-50: #fdf6f0;
-  --c-gray-100: #f5ebe0;
-  --c-gray-200: #e8d8c8;
-  --c-gray-300: #d8c5b0;
-  --c-gray-400: #b09580;
-  --c-gray-500: #806b58;
-  --c-gray-600: #5a4a3a;
-  --c-gray-700: #443a2e;
-  --c-gray-900: #2a2018;
-  --c-brand-50: #fff7ed;
-  --c-brand-100: #ffedd5;
-  --c-brand-200: #fed7aa;
-  --c-brand-300: #fdba74;
-  --c-brand-400: #fb923c;
-  --c-brand-500: #f97316;
-  --c-brand-600: #ea580c;
-  --c-brand-700: #c2410c;
-  --c-brand-800: #9a3412;
-  --c-brand-900: #7c2d12;
-  --c-brand-950: #431407;
+  --c-surface: #fffdf7;
+  --c-gray-50: #fef9f0;
+  --c-gray-100: #fdf0e0;
+  --c-gray-200: #f5e0c8;
+  --c-gray-300: #e8cdaa;
+  --c-gray-400: #c9a87e;
+  --c-gray-500: #a08560;
+  --c-gray-600: #7a6448;
+  --c-gray-700: #5a4a36;
+  --c-gray-900: #3a2e1e;
+  --c-brand-50: #f0fdfa;
+  --c-brand-100: #ccfbf1;
+  --c-brand-200: #99f6e4;
+  --c-brand-300: #5eead4;
+  --c-brand-400: #2dd4bf;
+  --c-brand-500: #14b8a6;
+  --c-brand-600: #0d9488;
+  --c-brand-700: #0f766e;
+  --c-brand-800: #115e59;
+  --c-brand-900: #134e4a;
+  --c-brand-950: #042f2e;
+  --c-green-50: #f0fdf4;
+  --c-green-200: #bbf7d0;
+  --c-amber-50: #fffbeb;
+  --c-amber-200: #fde68a;
+  --c-red-50: #fef2f2;
+  --c-red-200: #fecaca;
+}
+
+/* ── 6. Pink (soft rose) ── */
+[data-theme="pink"] {
+  --c-surface: #fff5f8;
+  --c-gray-50: #fdf0f5;
+  --c-gray-100: #fce4ee;
+  --c-gray-200: #f5c8da;
+  --c-gray-300: #e8a8c0;
+  --c-gray-400: #d080a0;
+  --c-gray-500: #a86080;
+  --c-gray-600: #804860;
+  --c-gray-700: #603648;
+  --c-gray-900: #3a1e2a;
+  --c-brand-50: #fdf2f8;
+  --c-brand-100: #fce7f3;
+  --c-brand-200: #fbcfe8;
+  --c-brand-300: #f9a8d4;
+  --c-brand-400: #f472b6;
+  --c-brand-500: #ec4899;
+  --c-brand-600: #db2777;
+  --c-brand-700: #be185d;
+  --c-brand-800: #9d174d;
+  --c-brand-900: #831843;
+  --c-brand-950: #500724;
   --c-green-50: #f0fdf4;
   --c-green-200: #bbf7d0;
   --c-amber-50: #fffbeb;
