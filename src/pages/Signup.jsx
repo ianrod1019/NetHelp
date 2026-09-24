@@ -116,6 +116,18 @@ export default function Signup() {
               </>
             )}
           </p>
+
+          <div className="mt-4 pt-4 border-t border-gray-100">
+            <button
+              onClick={() => login()}
+              className="btn-secondary w-full"
+            >
+              Continue as test user
+            </button>
+            <p className="text-xs text-gray-400 text-center mt-2">
+              Test account: jordan@example.com · pre-loaded with demo data
+            </p>
+          </div>
         </div>
       </div>
     </div>
