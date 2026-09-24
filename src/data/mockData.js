@@ -14,7 +14,7 @@ export const events = [
       'Connect with 40+ local employers hiring for internships and entry-level roles. Bring printed resumes and dress business casual.',
     organizer: 'Tulsa Tech',
     organizerType: 'School/Org Admin',
-    tags: ['Career Fair', 'Networking', 'Free'],
+    tags: ['Career Fair', 'Networking'],
     image: null,
   },
   {
@@ -30,7 +30,7 @@ export const events = [
       'Weekly free study group covering math, reading, and social studies for the GED exam. Walk-ins welcome. Volunteer tutors on site.',
     organizer: 'TCCL Adult Learning',
     organizerType: 'School/Org Admin',
-    tags: ['GED', 'Study Group', 'Free'],
+    tags: ['GED', 'Study Group'],
     image: null,
   },
   {
@@ -46,7 +46,7 @@ export const events = [
       'Hands-on intro to web development for ages 16–24. No experience needed. Laptops provided. Light snacks included.',
     organizer: '36° North',
     organizerType: 'School/Org Admin',
-    tags: ['Workshop', 'Coding', 'Free'],
+    tags: ['Workshop', 'Coding'],
     image: null,
   },
   {
@@ -62,7 +62,7 @@ export const events = [
       'Get help filling out the FAFSA, learn about Tulsa Achieves scholarships, and meet with transfer advisors from area universities.',
     organizer: 'Tulsa Community College',
     organizerType: 'School/Org Admin',
-    tags: ['College Prep', 'FAFSA', 'Free'],
+    tags: ['College Prep', 'FAFSA'],
     image: null,
   },
   {
@@ -78,7 +78,7 @@ export const events = [
       'Casual networking event for young professionals and students. Speed-round intros, local employer booths, and free appetizers.',
     organizer: 'Tulsa Young Professionals',
     organizerType: 'School/Org Admin',
-    tags: ['Networking', 'Mixer', 'Free'],
+    tags: ['Networking', 'Mixer'],
     image: null,
   },
   {
@@ -94,7 +94,7 @@ export const events = [
       'Take a full-length GED practice test in a timed environment. Results and individualized study plan provided same day.',
     organizer: 'Tulsa Tech Adult Ed',
     organizerType: 'School/Org Admin',
-    tags: ['GED', 'Practice Test', 'Free'],
+    tags: ['GED', 'Practice Test'],
     image: null,
   },
 ]
@@ -214,7 +214,7 @@ export const gedCenters = [
     name: 'Tulsa City-County Library — Adult Learning Center',
     address: '400 Civic Center, Tulsa, OK 74103',
     phone: '(918) 549-7400',
-    services: ['Free Prep Classes', 'Study Materials', 'One-on-One Tutoring'],
+    services: ['Prep Classes', 'Study Materials', 'One-on-One Tutoring'],
     free: true,
     hours: 'Mon–Sat 9 AM – 6 PM',
     lat: 36.1537,

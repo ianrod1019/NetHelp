@@ -2,18 +2,31 @@ import { createContext, useContext, useState, useCallback, useEffect } from 'rea
 
 const AppContext = createContext(null)
 
+const DEMO_USER = {
+  name: 'Jordan Rivers',
+  role: 'Seeker',
+  avatar: 'JR',
+  location: 'Tulsa, OK',
+  bio: 'GED candidate and aspiring software developer based in Tulsa. Looking for internships and mentorship.',
+  skills: ['JavaScript', 'HTML/CSS', 'Python', 'Public Speaking'],
+  education: 'GED — In Progress (Est. Dec 2026)',
+  email: 'jordan@example.com',
+}
+
+const DEMO_HISTORY = [
+  {
+    id: 'h1',
+    eventId: 'e1',
+    title: 'Tulsa Tech Career Fair 2026',
+    dateAttended: '2026-09-10',
+    contactsMet: 'Met recruiter from OneGas and a TCC advisor.',
+    notes: 'Follow up with OneGas about summer internship.',
+  },
+]
+
 export function AppProvider({ children }) {
-  // User profile state
-  const [user, setUser] = useState({
-    name: 'Jordan Rivers',
-    role: 'Seeker',
-    avatar: 'JR',
-    location: 'Tulsa, OK',
-    bio: 'GED candidate and aspiring software developer based in Tulsa. Looking for internships and mentorship.',
-    skills: ['JavaScript', 'HTML/CSS', 'Python', 'Public Speaking'],
-    education: 'GED — In Progress (Est. Dec 2026)',
-    email: 'jordan@example.com',
-  })
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [user, setUser] = useState(null)
 
   // Settings toggles
   const [allowDirectMessages, setAllowDirectMessages] = useState(true)
@@ -23,19 +36,45 @@ export function AppProvider({ children }) {
   const [rsvpedEvents, setRsvpedEvents] = useState([])
 
   // History log entries
-  const [history, setHistory] = useState([
-    {
-      id: 'h1',
-      eventId: 'e1',
-      title: 'Tulsa Tech Career Fair 2026',
-      dateAttended: '2026-09-10',
-      contactsMet: 'Met recruiter from OneGas and a TCC advisor.',
-      notes: 'Follow up with OneGas about summer internship.',
-    },
-  ])
+  const [history, setHistory] = useState([])
 
   // Messaging drawer
   const [messagingOpen, setMessagingOpen] = useState(false)
+
+  const signup = useCallback((data) => {
+    const initials = data.name
+      .split(' ')
+      .map((n) => n[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase()
+    setUser({
+      name: data.name,
+      role: 'Seeker',
+      avatar: initials || '?',
+      location: 'Tulsa, OK',
+      bio: 'New NetHelp member exploring opportunities in Tulsa.',
+      skills: [],
+      education: '',
+      email: data.email,
+    })
+    setIsAuthenticated(true)
+  }, [])
+
+  const login = useCallback(() => {
+    setUser(DEMO_USER)
+    setHistory(DEMO_HISTORY)
+    setIsAuthenticated(true)
+  }, [])
+
+  const logout = useCallback(() => {
+    setIsAuthenticated(false)
+    setUser(null)
+    setRsvpedEvents([])
+    setHistory([])
+    setAllowDirectMessages(true)
+    setNotificationsEnabled(false)
+  }, [])
 
   const toggleRSVP = useCallback((eventId) => {
     setRsvpedEvents((prev) =>
@@ -88,7 +127,6 @@ export function AppProvider({ children }) {
     await requestNotificationPermission()
   }, [notificationsEnabled, requestNotificationPermission])
 
-  // Send a test notification when toggled on
   useEffect(() => {
     if (notificationsEnabled && 'Notification' in window && Notification.permission === 'granted') {
       new Notification('NetHelp Notifications Enabled', {
@@ -98,8 +136,12 @@ export function AppProvider({ children }) {
   }, [notificationsEnabled])
 
   const value = {
+    isAuthenticated,
     user,
     setUser,
+    signup,
+    login,
+    logout,
     allowDirectMessages,
     setAllowDirectMessages,
     notificationsEnabled,

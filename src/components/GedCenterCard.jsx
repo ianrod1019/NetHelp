@@ -3,7 +3,7 @@ export default function GedCenterCard({ center }) {
     <article className="card p-4 flex flex-col gap-2">
       <div className="flex items-start justify-between gap-2">
         <h3 className="font-semibold text-gray-900 leading-tight">{center.name}</h3>
-        {center.free && <span className="badge bg-green-50 text-green-700 shrink-0">Free</span>}
+
       </div>
 
       <dl className="text-sm text-gray-500 space-y-1">
