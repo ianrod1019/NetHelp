@@ -5,7 +5,6 @@ const FILTERS = [
   { label: 'GED Prep', path: '/ged', key: 'ged' },
   { label: 'Internships', path: '/internships', key: 'internships' },
   { label: 'Events', path: '/events', key: 'events' },
-  { label: 'Mentors', path: '/ged', key: 'mentors' },
 ]
 
 export default function FilterHotbar() {
