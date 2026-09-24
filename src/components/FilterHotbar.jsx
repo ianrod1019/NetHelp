@@ -13,7 +13,7 @@ export default function FilterHotbar() {
 
   return (
     <nav
-      className="sticky top-14 z-30 bg-white border-b border-gray-200 shadow-sm"
+      className="sticky top-14 z-30 bg-surface border-b border-gray-200 shadow-sm"
       aria-label="Feed filters"
     >
       <div className="max-w-5xl mx-auto px-4">

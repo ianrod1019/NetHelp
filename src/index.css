@@ -10,7 +10,7 @@
     @apply bg-gray-50 text-gray-900 antialiased;
   }
   *:focus-visible {
-    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-white rounded;
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-surface rounded;
   }
 }
 
@@ -22,19 +22,19 @@
     @apply btn bg-brand-600 text-white hover:bg-brand-700;
   }
   .btn-secondary {
-    @apply btn bg-white text-gray-700 border border-gray-300 hover:bg-gray-50;
+    @apply btn bg-surface text-gray-700 border border-gray-300 hover:bg-gray-50;
   }
   .btn-ghost {
     @apply btn text-gray-600 hover:bg-gray-100;
   }
   .card {
-    @apply bg-white rounded-xl border border-gray-200 shadow-sm;
+    @apply bg-surface rounded-xl border border-gray-200 shadow-sm;
   }
   .badge {
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
   }
   .input {
-    @apply w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500;
+    @apply w-full rounded-lg border border-gray-300 bg-surface px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500;
   }
   .nav-link {
     @apply rounded-lg px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors;

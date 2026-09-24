@@ -15,7 +15,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
+    <header className="sticky top-0 z-40 bg-surface border-b border-gray-200">
       <div className="max-w-5xl mx-auto px-4 h-14 flex items-center gap-3">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 shrink-0">

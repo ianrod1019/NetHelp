@@ -32,6 +32,26 @@ export function AppProvider({ children }) {
   const [allowDirectMessages, setAllowDirectMessages] = useState(true)
   const [notificationsEnabled, setNotificationsEnabled] = useState(false)
 
+  // Theme
+  const [theme, setThemeState] = useState(() => {
+    try {
+      return localStorage.getItem('nethelp-theme') || 'light'
+    } catch {
+      return 'light'
+    }
+  })
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    try {
+      localStorage.setItem('nethelp-theme', theme)
+    } catch {
+      // ignore
+    }
+  }, [theme])
+
+  const setTheme = useCallback((t) => setThemeState(t), [])
+
   // RSVP'd event IDs
   const [rsvpedEvents, setRsvpedEvents] = useState([])
 
@@ -171,6 +191,8 @@ export function AppProvider({ children }) {
     removeHistoryEntry,
     messagingOpen,
     setMessagingOpen,
+    theme,
+    setTheme,
   }
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>

@@ -19,7 +19,7 @@ export default function MessagingDrawer() {
 
       {/* Drawer */}
       <aside
-        className={`fixed right-0 top-0 z-50 h-full w-full max-w-sm bg-white shadow-xl transition-transform duration-200 ${
+        className={`fixed right-0 top-0 z-50 h-full w-full max-w-sm bg-surface shadow-xl transition-transform duration-200 ${
           messagingOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         aria-hidden={!messagingOpen}

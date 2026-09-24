@@ -61,13 +61,13 @@ export default function GedHub() {
               <div className="flex rounded-lg border border-gray-300 overflow-hidden">
                 <button
                   onClick={() => setView('list')}
-                  className={`px-3 py-1.5 text-sm font-medium ${view === 'list' ? 'bg-brand-600 text-white' : 'bg-white text-gray-600'}`}
+                  className={`px-3 py-1.5 text-sm font-medium ${view === 'list' ? 'bg-brand-600 text-white' : 'bg-surface text-gray-600'}`}
                 >
                   List
                 </button>
                 <button
                   onClick={() => setView('map')}
-                  className={`px-3 py-1.5 text-sm font-medium ${view === 'map' ? 'bg-brand-600 text-white' : 'bg-white text-gray-600'}`}
+                  className={`px-3 py-1.5 text-sm font-medium ${view === 'map' ? 'bg-brand-600 text-white' : 'bg-surface text-gray-600'}`}
                 >
                   Map
                 </button>

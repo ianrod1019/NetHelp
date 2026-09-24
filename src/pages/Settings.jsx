@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Toggle from '../components/Toggle.jsx'
+import ThemePicker from '../components/ThemePicker.jsx'
 import { useApp } from '../context/AppContext.jsx'
 
 const ROLES = ['Seeker', 'School/Org Admin', 'Employer/Business']
@@ -82,6 +83,13 @@ export default function Settings() {
         <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
         <p className="text-sm text-gray-500 mt-1">Manage your privacy, notifications, and profile.</p>
       </div>
+
+      {/* Theme */}
+      <section className="card p-5">
+        <h2 className="font-semibold text-gray-900 mb-4">Appearance</h2>
+        <p className="text-sm text-gray-500 mb-4">Choose a theme for the app. Your preference is saved on this device.</p>
+        <ThemePicker />
+      </section>
 
       {/* Profile Information */}
       <section className="card p-5">
