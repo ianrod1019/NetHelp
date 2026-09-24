@@ -76,6 +76,22 @@ export function AppProvider({ children }) {
     setNotificationsEnabled(false)
   }, [])
 
+  const updateProfile = useCallback((updates) => {
+    setUser((prev) => {
+      if (!prev) return prev
+      const next = { ...prev, ...updates }
+      if (updates.name) {
+        next.avatar = updates.name
+          .split(' ')
+          .map((n) => n[0])
+          .join('')
+          .slice(0, 2)
+          .toUpperCase() || prev.avatar
+      }
+      return next
+    })
+  }, [])
+
   const toggleRSVP = useCallback((eventId) => {
     setRsvpedEvents((prev) =>
       prev.includes(eventId)
@@ -142,6 +158,7 @@ export function AppProvider({ children }) {
     signup,
     login,
     logout,
+    updateProfile,
     allowDirectMessages,
     setAllowDirectMessages,
     notificationsEnabled,
