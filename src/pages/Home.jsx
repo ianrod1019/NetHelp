@@ -1,36 +1,43 @@
 import { useSearchParams } from 'react-router-dom'
 import { useMemo, useState } from 'react'
-import { events, internships } from '../data/mockData.js'
+import { getEvents, getInternships, resolveRegion, supportedRegions } from '../data/mockData.js'
 import EventCard from '../components/EventCard.jsx'
 import InternshipCard from '../components/InternshipCard.jsx'
+import { useApp } from '../context/AppContext.jsx'
 
 export default function Home() {
+  const { user } = useApp()
+  const region = user?.location || ''
   const [searchParams] = useSearchParams()
   const query = searchParams.get('q') || ''
   const [localSearch, setLocalSearch] = useState(query)
 
   const q = (localSearch || query).toLowerCase()
+  const isSupported = !!resolveRegion(region)
+
+  const allEvents = useMemo(() => getEvents(region), [region])
+  const allInternships = useMemo(() => getInternships(region), [region])
 
   const filteredEvents = useMemo(
-    () => events.filter((e) =>
+    () => allEvents.filter((e) =>
       !q ||
       e.title.toLowerCase().includes(q) ||
       e.description.toLowerCase().includes(q) ||
       e.location.toLowerCase().includes(q) ||
       e.tags?.some((t) => t.toLowerCase().includes(q))
     ),
-    [q]
+    [q, allEvents]
   )
 
   const filteredInternships = useMemo(
-    () => internships.filter((i) =>
+    () => allInternships.filter((i) =>
       !q ||
       i.title.toLowerCase().includes(q) ||
       i.company.toLowerCase().includes(q) ||
       i.description.toLowerCase().includes(q) ||
       i.tags?.some((t) => t.toLowerCase().includes(q))
     ),
-    [q]
+    [q, allInternships]
   )
 
   return (
@@ -38,13 +45,22 @@ export default function Home() {
       {/* Hero */}
       <section className="rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 text-white p-6 sm:p-8">
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
-          Opportunities in Tulsa, OK
+          Opportunities in {region || 'Tulsa, OK'}
         </h1>
         <p className="mt-2 text-brand-100 max-w-lg">
           GED resources, local internships, and networking events — all in one place.
           RSVP, track your history, and build your digital resume.
         </p>
       </section>
+
+      {!isSupported && (
+        <div className="rounded-lg bg-amber-50 border border-amber-200 p-4 text-sm text-amber-800">
+          <p className="font-medium">No local data for "{region}" yet.</p>
+          <p className="mt-1">
+            We currently cover: {supportedRegions.join(', ')}. Update your region in Settings to see local opportunities.
+          </p>
+        </div>
+      )}
 
       {/* Quick search */}
       <div className="relative">

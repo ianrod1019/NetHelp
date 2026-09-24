@@ -1,19 +1,36 @@
-import { useState } from 'react'
-import { gedCenters, studyResources, mentors } from '../data/mockData.js'
+import { useMemo, useState } from 'react'
+import { getGedCenters, getMentors, studyResources, resolveRegion, supportedRegions } from '../data/mockData.js'
 import GedCenterCard from '../components/GedCenterCard.jsx'
 import { useApp } from '../context/AppContext.jsx'
 
 export default function GedHub() {
+  const { user, allowDirectMessages, setMessagingOpen } = useApp()
+  const region = user?.location || ''
   const [view, setView] = useState('list') // 'list' | 'map'
   const [tab, setTab] = useState('centers') // 'centers' | 'resources' | 'mentors'
-  const { allowDirectMessages, setMessagingOpen } = useApp()
+
+  const gedCenters = useMemo(() => getGedCenters(region), [region])
+  const mentors = useMemo(() => getMentors(region), [region])
+  const isSupported = !!resolveRegion(region)
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">GED Resource Hub</h1>
-        <p className="text-sm text-gray-500 mt-1">Test centers, free prep classes, study resources, and mentors in Tulsa.</p>
+        <p className="text-sm text-gray-500 mt-1">
+          Test centers, free prep classes, study resources, and mentors in {region || 'Tulsa'}.
+        </p>
       </div>
+
+      {!isSupported && (
+        <div className="rounded-lg bg-amber-50 border border-amber-200 p-4 text-sm text-amber-800">
+          <p className="font-medium">No GED center data for "{region}" yet.</p>
+          <p className="mt-1">
+            We currently cover: {supportedRegions.join(', ')}. Update your region in Settings to see local centers.
+            Online study resources below are available everywhere.
+          </p>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="flex gap-1 border-b border-gray-200">
@@ -39,38 +56,42 @@ export default function GedHub() {
       {/* Centers tab */}
       {tab === 'centers' && (
         <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <div className="flex rounded-lg border border-gray-300 overflow-hidden">
-              <button
-                onClick={() => setView('list')}
-                className={`px-3 py-1.5 text-sm font-medium ${view === 'list' ? 'bg-brand-600 text-white' : 'bg-white text-gray-600'}`}
-              >
-                List
-              </button>
-              <button
-                onClick={() => setView('map')}
-                className={`px-3 py-1.5 text-sm font-medium ${view === 'map' ? 'bg-brand-600 text-white' : 'bg-white text-gray-600'}`}
-              >
-                Map
-              </button>
+          {gedCenters.length > 0 && (
+            <div className="flex items-center gap-2">
+              <div className="flex rounded-lg border border-gray-300 overflow-hidden">
+                <button
+                  onClick={() => setView('list')}
+                  className={`px-3 py-1.5 text-sm font-medium ${view === 'list' ? 'bg-brand-600 text-white' : 'bg-white text-gray-600'}`}
+                >
+                  List
+                </button>
+                <button
+                  onClick={() => setView('map')}
+                  className={`px-3 py-1.5 text-sm font-medium ${view === 'map' ? 'bg-brand-600 text-white' : 'bg-white text-gray-600'}`}
+                >
+                  Map
+                </button>
+              </div>
             </div>
-          </div>
+          )}
 
-          {view === 'list' ? (
+          {gedCenters.length > 0 && view === 'list' ? (
             <div className="grid gap-4 sm:grid-cols-2">
               {gedCenters.map((c) => (
                 <GedCenterCard key={c.id} center={c} />
               ))}
             </div>
-          ) : (
+          ) : gedCenters.length > 0 && view === 'map' ? (
             <div className="card overflow-hidden">
               <iframe
-                title="Tulsa GED Centers Map"
+                title={`${region} GED Centers Map`}
                 className="w-full h-[400px] border-0"
                 loading="lazy"
-                src={`https://www.google.com/maps?q=GED+testing+center+Tulsa+OK&output=embed`}
+                src={`https://www.google.com/maps?q=GED+testing+center+${encodeURIComponent(region)}&output=embed`}
               />
             </div>
+          ) : (
+            <p className="text-sm text-gray-500 py-8 text-center">No test centers found for your region.</p>
           )}
         </div>
       )}
@@ -109,35 +130,39 @@ export default function GedHub() {
       {/* Mentors tab */}
       {tab === 'mentors' && (
         <div className="space-y-3">
-          {mentors.map((m) => (
-            <article key={m.id} className="card p-4 flex items-center gap-3">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 text-brand-700 font-semibold shrink-0">
-                {m.avatar}
-              </span>
-              <div className="min-w-0 flex-1">
-                <h3 className="font-semibold text-gray-900">{m.name}</h3>
-                <p className="text-sm text-gray-500">{m.role} · {m.org}</p>
-                <p className="text-sm text-gray-600 mt-0.5">{m.specialty}</p>
-              </div>
-              <div className="flex flex-col items-end gap-1 shrink-0">
-                <span className={`badge ${m.available ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
-                  {m.available ? 'Available' : 'Booked'}
+          {mentors.length > 0 ? (
+            mentors.map((m) => (
+              <article key={m.id} className="card p-4 flex items-center gap-3">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 text-brand-700 font-semibold shrink-0">
+                  {m.avatar}
                 </span>
-                <button
-                  onClick={() => {
-                    if (allowDirectMessages) {
-                      setMessagingOpen(true)
-                    }
-                  }}
-                  disabled={!allowDirectMessages}
-                  className="btn-secondary text-xs px-3 py-1.5"
-                  title={allowDirectMessages ? 'Message this mentor' : 'Enable DMs in Settings'}
-                >
-                  Message
-                </button>
-              </div>
-            </article>
-          ))}
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-semibold text-gray-900">{m.name}</h3>
+                  <p className="text-sm text-gray-500">{m.role} · {m.org}</p>
+                  <p className="text-sm text-gray-600 mt-0.5">{m.specialty}</p>
+                </div>
+                <div className="flex flex-col items-end gap-1 shrink-0">
+                  <span className={`badge ${m.available ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+                    {m.available ? 'Available' : 'Booked'}
+                  </span>
+                  <button
+                    onClick={() => {
+                      if (allowDirectMessages) {
+                        setMessagingOpen(true)
+                      }
+                    }}
+                    disabled={!allowDirectMessages}
+                    className="btn-secondary text-xs px-3 py-1.5"
+                    title={allowDirectMessages ? 'Message this mentor' : 'Enable DMs in Settings'}
+                  >
+                    Message
+                  </button>
+                </div>
+              </article>
+            ))
+          ) : (
+            <p className="text-sm text-gray-500 py-8 text-center">No mentors found for your region.</p>
+          )}
         </div>
       )}
     </div>

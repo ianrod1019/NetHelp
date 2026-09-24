@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useApp } from '../context/AppContext.jsx'
-import { events } from '../data/mockData.js'
+import { getAllEvents } from '../data/mockData.js'
 
 export default function Profile() {
   const { user, history, rsvpedEvents, allowDirectMessages } = useApp()
 
   const rsvpedEventDetails = rsvpedEvents
-    .map((id) => events.find((e) => e.id === id))
+    .map((id) => getAllEvents().find((e) => e.id === id))
     .filter(Boolean)
 
   return (

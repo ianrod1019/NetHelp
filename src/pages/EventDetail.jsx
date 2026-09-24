@@ -1,12 +1,12 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { events } from '../data/mockData.js'
+import { getAllEvents } from '../data/mockData.js'
 import { useApp } from '../context/AppContext.jsx'
 
 export default function EventDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const event = events.find((e) => e.id === id)
+  const event = getAllEvents().find((e) => e.id === id)
   const { isRsvped, toggleRSVP, addHistoryEntry } = useApp()
   const [reported, setReported] = useState(false)
   const [contacts, setContacts] = useState('')

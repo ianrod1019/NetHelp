@@ -1,8 +1,10 @@
+import { useMemo } from 'react'
 import { useApp } from '../context/AppContext.jsx'
-import { mentors } from '../data/mockData.js'
+import { getMentors } from '../data/mockData.js'
 
 export default function MessagingDrawer() {
-  const { messagingOpen, setMessagingOpen, allowDirectMessages } = useApp()
+  const { messagingOpen, setMessagingOpen, allowDirectMessages, user } = useApp()
+  const mentors = useMemo(() => getMentors(user?.location || ''), [user?.location])
 
   return (
     <>
