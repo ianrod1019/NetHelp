@@ -89,16 +89,31 @@ export default function EventDetail() {
       <div className="card p-5">
         <h2 className="font-semibold text-gray-900 mb-3">Attend</h2>
         <div className="flex flex-wrap items-center gap-3">
-          <button
-            onClick={() => toggleRSVP(event.id)}
-            className={rsvped ? 'btn-secondary' : 'btn-primary'}
-          >
-            {rsvped ? '✓ Going (Click to cancel)' : 'RSVP to this event'}
-          </button>
-          {rsvped && (
-            <span className="text-sm text-green-600 font-medium">
-              You're going! We'll remind you before the event.
-            </span>
+          {rsvped ? (
+            <>
+              <span className="inline-flex items-center gap-1.5 rounded-lg bg-green-50 text-green-700 px-4 py-2 text-sm font-semibold">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                You're going
+              </span>
+              <button
+                onClick={() => toggleRSVP(event.id)}
+                className="btn-secondary text-red-600 hover:bg-red-50 border-red-200"
+              >
+                Cancel RSVP
+              </button>
+              <span className="text-sm text-green-600 font-medium">
+                We'll remind you before the event.
+              </span>
+            </>
+          ) : (
+            <button
+              onClick={() => toggleRSVP(event.id)}
+              className="btn-primary"
+            >
+              RSVP to this event
+            </button>
           )}
         </div>
       </div>

@@ -42,21 +42,29 @@ export default function EventCard({ event }) {
       </dl>
 
       <div className="flex items-center gap-2 mt-1">
-        <button
-          onClick={() => toggleRSVP(event.id)}
-          className={rsvped ? 'btn-secondary' : 'btn-primary'}
-        >
-          {rsvped ? (
-            <>
+        {rsvped ? (
+          <>
+            <span className="inline-flex items-center gap-1.5 rounded-lg bg-green-50 text-green-700 px-4 py-2 text-sm font-semibold">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               Going
-            </>
-          ) : (
-            'RSVP'
-          )}
-        </button>
+            </span>
+            <button
+              onClick={() => toggleRSVP(event.id)}
+              className="btn-ghost text-red-600 hover:bg-red-50"
+            >
+              Cancel
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={() => toggleRSVP(event.id)}
+            className="btn-primary"
+          >
+            RSVP
+          </button>
+        )}
         <Link to={`/events/${event.id}`} className="btn-ghost">
           Details
         </Link>
