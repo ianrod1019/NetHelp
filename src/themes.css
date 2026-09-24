@@ -127,27 +127,27 @@
 
 /* ── 5. Sunset (summer tropical) ── */
 [data-theme="sunset"] {
-  --c-surface: #fffdf7;
-  --c-gray-50: #fef9f0;
-  --c-gray-100: #fdf0e0;
-  --c-gray-200: #f5e0c8;
-  --c-gray-300: #e8cdaa;
-  --c-gray-400: #c9a87e;
-  --c-gray-500: #a08560;
-  --c-gray-600: #7a6448;
-  --c-gray-700: #5a4a36;
-  --c-gray-900: #3a2e1e;
-  --c-brand-50: #f0fdfa;
-  --c-brand-100: #ccfbf1;
-  --c-brand-200: #99f6e4;
-  --c-brand-300: #5eead4;
-  --c-brand-400: #2dd4bf;
-  --c-brand-500: #14b8a6;
-  --c-brand-600: #0d9488;
-  --c-brand-700: #0f766e;
-  --c-brand-800: #115e59;
-  --c-brand-900: #134e4a;
-  --c-brand-950: #042f2e;
+  --c-surface: #fff5f0;
+  --c-gray-50: #fef0ea;
+  --c-gray-100: #fde4d8;
+  --c-gray-200: #f5cdb8;
+  --c-gray-300: #e8b095;
+  --c-gray-400: #d08a6e;
+  --c-gray-500: #a86850;
+  --c-gray-600: #804e3c;
+  --c-gray-700: #5e3a2e;
+  --c-gray-900: #3a221a;
+  --c-brand-50: #fff1eb;
+  --c-brand-100: #ffe0d0;
+  --c-brand-200: #ffc2a3;
+  --c-brand-300: #ff9e70;
+  --c-brand-400: #ff7a3d;
+  --c-brand-500: #ff5a1f;
+  --c-brand-600: #ed4410;
+  --c-brand-700: #c4330a;
+  --c-brand-800: #9a2808;
+  --c-brand-900: #7a2008;
+  --c-brand-950: #420e02;
   --c-green-50: #f0fdf4;
   --c-green-200: #bbf7d0;
   --c-amber-50: #fffbeb;

@@ -24,7 +24,7 @@ const THEMES = [
   {
     key: 'sunset',
     label: 'Sunset',
-    swatch: ['#fef9f0', '#fffdf7', '#14b8a6'],
+    swatch: ['#fef0ea', '#fff5f0', '#ff5a1f'],
   },
   {
     key: 'pink',
